@@ -28,9 +28,9 @@
   <circle cx="1260" cy="76" r="180" fill="#1d4d61" opacity=".18"/>
   <circle cx="120" cy="470" r="150" fill="#25506b" opacity=".14"/>
 
-  <text x="70" y="70" class="eyebrow">INTERPRETABLE COMPUTER VISION</text>
+  <text x="70" y="70" class="eyebrow">DETERMINISTIC COMPUTER VISION</text>
   <text x="70" y="112" style="font:700 34px Arial,sans-serif;fill:#fff">Classical vehicle detection + tracking</text>
-  <text x="70" y="145" class="small">Each stage is explicit: the output of one stage becomes the input to the next.</text>
+  <text x="70" y="145" class="small">HOG gradients, geometry, and motion models — each stage is explicit and inspectable.</text>
 
   <g filter="url(#shadow)">
     <rect x="70" y="205" width="170" height="150" rx="16" class="card"/>
