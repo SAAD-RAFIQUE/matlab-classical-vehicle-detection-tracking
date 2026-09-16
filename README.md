@@ -5,28 +5,30 @@
 </p>
 
 <p align="center">
-  <strong>An interpretable MATLAB baseline for vehicle detection, multi-object tracking, and failure-case analysis.</strong><br>
-  Classical vision methods, explicit geometry, and motion models — with no neural detector in the main pipeline.
+  <strong>A math-driven MATLAB pipeline for vehicle detection, multi-object tracking, and failure-case analysis.</strong><br>
+  Hand-crafted image mathematics, explicit geometry, and motion models — no learned detector in the main workflow.
 </p>
 
 ## At a Glance
 
 | Input | Processing | Output |
 | --- | --- | --- |
-| Road-scene images and video sequences | Image preparation, candidate generation, HOG and appearance checks, geometry, non-maximum suppression, and Kalman tracking | Annotated frames, track IDs, trajectories, saved results, and evaluation summaries |
+| Road-scene images and video sequences | Deterministic image processing, HOG gradient histograms, cosine similarity, geometric constraints, IoU filtering, and Kalman tracking | Annotated frames, track IDs, trajectories, saved results, and evaluation summaries |
 
-This repository contains an intentionally classical computer-vision workflow. The emphasis is on making each decision visible: where candidates come from, why boxes are rejected, how tracks are assigned, and where the method begins to fail.
+This repository contains an intentionally classical computer-vision workflow. The main `main.m` path uses no machine-learning model, training step, classifier fitting, or neural network. HOG is used as a hand-crafted mathematical descriptor: image gradients are converted into orientation histograms, then compared with a canonical vehicle template using cosine similarity.
+
+The emphasis is on making each decision visible: where candidates come from, why boxes are rejected, how tracks are assigned, and where the method begins to fail.
 
 ## Pipeline
 
 <p align="center">
-  <img src="assets/Pipeline-Diagram.svg" alt="Pipeline from road-scene frames to vehicle tracks and evaluation" width="1100">
+  <img src="assets/Pipeline-Diagram.svg" alt="Deterministic pipeline from road-scene frames to vehicle tracks and evaluation" width="1100">
 </p>
 
 The main workflow combines:
 
+- image gradients, HOG orientation histograms, and cosine similarity;
 - shadow- and morphology-based candidate generation;
-- HOG descriptors and appearance-similarity checks;
 - road and perspective constraints;
 - IoU-based non-maximum suppression;
 - Kalman filtering for position and velocity;
@@ -34,7 +36,7 @@ The main workflow combines:
 - camera- and ego-motion compensation; and
 - per-category and per-sequence evaluation.
 
-The main script is a classical computer-vision pipeline and does not use a neural network. `hog_car_detector.m` is a separate HOG + linear SVM experiment included as a comparison point.
+The main script is a deterministic mathematical pipeline. A separate `hog_car_detector.m` proof-of-concept script demonstrates a trained linear-SVM comparison; it is not part of the main `main.m` workflow.
 
 ## Results Gallery
 
@@ -78,9 +80,9 @@ The repository also contains lightweight previews of three generated tracking se
 │   ├── README.md
 │   └── results.mat                  # Saved result structure from the experiment
 ├── src/
-│   ├── main.m                       # End-to-end detection and tracking workflow
-│   ├── compare_sobel_vs_hog_math.m  # Classical-method comparison
-│   ├── hog_car_detector.m           # Optional HOG + linear-SVM baseline
+│   ├── main.m                       # Main deterministic detection and tracking workflow
+│   ├── compare_sobel_vs_hog_math.m  # Sobel versus pure-math HOG comparison
+│   ├── hog_car_detector.m           # Separate optional HOG + linear-SVM experiment
 │   └── test_pipeline.m              # Small smoke test
 └── .gitignore
 ```
@@ -89,13 +91,14 @@ Technical folder names remain lowercase by design. This keeps MATLAB relative pa
 
 ## Running the Project
 
-### Requirements
+### Requirements for the Main Workflow
 
 - MATLAB R2023b or newer is recommended.
 - Image Processing Toolbox.
 - Computer Vision Toolbox.
-- Statistics and Machine Learning Toolbox for `hog_car_detector.m`.
 - Windows MATLAB is useful for the optional memory-profiling calls.
+
+The main workflow does not require a trained model. The Statistics and Machine Learning Toolbox is needed only if you choose to run the separate optional `hog_car_detector.m` comparison script.
 
 Raw image and video data are intentionally not included. The repository is not tied to the original computer-specific paths. See [`data/README.md`](data/README.md) for the expected layout and the `KITTI_ROOT` option.
 
@@ -112,15 +115,20 @@ run(fullfile('src', 'main.m'))
 
 Generated files are written to `results/generated/`.
 
-The two additional experiments can be run with:
+The pure-math Sobel-versus-HOG comparison can be run with:
 
 ```matlab
 run(fullfile('src', 'compare_sobel_vs_hog_math.m'))
+```
+
+The separate optional HOG + linear-SVM proof of concept can be run with:
+
+```matlab
 run(fullfile('src', 'hog_car_detector.m'))
 ```
 
 ## Scope and Limitations
 
-This is an interpretable research baseline, not a production detector. Performance depends on lighting, camera geometry, segmentation quality, and the assumptions used to generate candidates. Some evaluation paths use annotated boxes for candidate verification, so the reported numbers should not be read as a blind deployment benchmark.
+This is an interpretable research baseline, not a production detector. Performance depends on lighting, camera geometry, segmentation quality, and the assumptions used to generate candidates. The main workflow is deterministic and math-driven, but some evaluation paths use annotated boxes for candidate verification; the reported numbers should therefore not be read as a blind deployment benchmark.
 
 Only selected generated artifacts are included here. Raw datasets are not redistributed, and the repository contains no private credentials or company-internal material. For a new experiment, use data you are allowed to use and record the exact settings.
