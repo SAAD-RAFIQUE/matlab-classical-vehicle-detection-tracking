@@ -36,7 +36,7 @@ The main workflow combines:
 - camera- and ego-motion compensation; and
 - per-category and per-sequence evaluation.
 
-The main script is a deterministic mathematical pipeline. A separate `hog_car_detector.m` proof-of-concept script demonstrates a trained linear-SVM comparison; it is not part of the main `main.m` workflow.
+The main script is a deterministic mathematical pipeline. A separate `experiments/hog_car_detector.m` proof-of-concept script demonstrates a trained linear-SVM comparison; it is not part of the main `main.m` workflow.
 
 ## Results Gallery
 
@@ -80,7 +80,9 @@ The repository also contains lightweight previews of three generated tracking se
 │   ├── README.md
 │   └── results.mat                  # Saved result structure from the experiment
 ├── src/
-│   ├── main.m                       # Main deterministic detection and tracking workflow
+│   └── main.m                       # Only entry point: deterministic detection and tracking
+├── experiments/
+│   ├── README.md                    # Auxiliary scripts and how to run them
 │   ├── compare_sobel_vs_hog_math.m  # Sobel versus pure-math HOG comparison
 │   ├── hog_car_detector.m           # Separate optional HOG + linear-SVM experiment
 │   └── test_pipeline.m              # Small smoke test
