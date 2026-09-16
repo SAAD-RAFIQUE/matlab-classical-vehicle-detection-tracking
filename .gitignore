@@ -1,0 +1,20 @@
+# MATLAB generated files
+*.asv
+*.m~
+*.autosave
+*.mex*
+
+# Generated experiment outputs
+/results/generated/
+/results/comparison_proof/
+/results/hog_proof/
+
+# Raw or locally licensed datasets
+/data/raw_dataset_pictures/
+/data/raw_dataset_videos/
+/data/kitti/
+
+# Local MATLAB and OS files
+.matlab/
+.DS_Store
+Thumbs.db
