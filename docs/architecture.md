@@ -51,7 +51,7 @@ Detection is evaluated with one-to-one IoU matching at the configured threshold.
 
 ## Optional HOG + Linear-SVM Comparison
 
-`hog_car_detector.m` is separate from the main workflow. It trains a linear SVM on HOG descriptors as a proof-of-concept comparison. This optional script is the only part of the repository that uses a trained classifier; it should not be confused with the pure-math HOG cosine-similarity path in `main.m` or `compare_sobel_vs_hog_math.m`.
+`experiments/hog_car_detector.m` is separate from the main workflow. It trains a linear SVM on HOG descriptors as a proof-of-concept comparison. This optional script is the only part of the repository that uses a trained classifier; it should not be confused with the pure-math HOG cosine-similarity path in `src/main.m` or `experiments/compare_sobel_vs_hog_math.m`.
 
 ## Known Limitations
 
