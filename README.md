@@ -100,9 +100,11 @@ The checked-in files are outputs from the original MATLAB workflow and are inclu
 - [Shadow scene](assets/4_shadow_b1cd1e94-549d0bfe.png)
 - [Occlusion scene](assets/5_occlusion_b1c66a42-6f7d68ca.png)
 - [Out-of-frame scene](assets/6_out_of_frame_b1d968b9-563405f4.png)
-- [Tracking sequence 0005](assets/tracking_seq_0005.mp4)
-- [Tracking sequence 0011](assets/tracking_seq_0011.mp4)
-- [Tracking sequence 0020](assets/tracking_seq_0020.mp4)
+The video links below are lightweight previews of the generated tracking outputs so they are practical to view directly on GitHub:
+
+- [Tracking sequence 0005 preview](assets/tracking_seq_0005_preview.mp4)
+- [Tracking sequence 0011 preview](assets/tracking_seq_0011_preview.mp4)
+- [Tracking sequence 0020 preview](assets/tracking_seq_0020_preview.mp4)
 
 ## Notes and limitations
 
