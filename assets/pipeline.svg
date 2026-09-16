@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="520" viewBox="0 0 1400 520" role="img" aria-labelledby="title desc">
+  <title id="title">Classical vehicle detection and tracking pipeline</title>
+  <desc id="desc">Road-scene frames move through image preparation, candidate generation, HOG and geometry checks, non-maximum suppression, Kalman tracking, and evaluation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#16263d"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#203b5d"/>
+      <stop offset="1" stop-color="#172b45"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#020617" flood-opacity=".38"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#6ee7d8"/>
+    </marker>
+    <style>
+      .label { font: 600 18px Arial, sans-serif; fill: #f8fafc; }
+      .small { font: 400 14px Arial, sans-serif; fill: #bfd0e4; }
+      .eyebrow { font: 700 13px Arial, sans-serif; letter-spacing: 2px; fill: #6ee7d8; }
+      .line { stroke: #6ee7d8; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .card { fill: url(#card); stroke: #315477; stroke-width: 1.5; }
+    </style>
+  </defs>
+  <rect width="1400" height="520" rx="24" fill="url(#bg)"/>
+  <circle cx="1260" cy="76" r="180" fill="#1d4d61" opacity=".18"/>
+  <circle cx="120" cy="470" r="150" fill="#25506b" opacity=".14"/>
+
+  <text x="70" y="70" class="eyebrow">INTERPRETABLE COMPUTER VISION</text>
+  <text x="70" y="112" style="font:700 34px Arial,sans-serif;fill:#fff">Classical vehicle detection + tracking</text>
+  <text x="70" y="145" class="small">Each stage is explicit: the output of one stage becomes the input to the next.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="205" width="170" height="150" rx="16" class="card"/>
+    <rect x="280" y="205" width="170" height="150" rx="16" class="card"/>
+    <rect x="490" y="205" width="190" height="150" rx="16" class="card"/>
+    <rect x="720" y="205" width="180" height="150" rx="16" class="card"/>
+    <rect x="940" y="205" width="180" height="150" rx="16" class="card"/>
+    <rect x="1160" y="205" width="170" height="150" rx="16" class="card"/>
+  </g>
+
+  <line x1="240" y1="280" x2="270" y2="280" class="line"/>
+  <line x1="450" y1="280" x2="480" y2="280" class="line"/>
+  <line x1="680" y1="280" x2="710" y2="280" class="line"/>
+  <line x1="900" y1="280" x2="930" y2="280" class="line"/>
+  <line x1="1120" y1="280" x2="1150" y2="280" class="line"/>
+
+  <g transform="translate(95 232)">
+    <path d="M12 72h120M25 72V48l20-18h60l24 18v24M42 72a12 12 0 1 0 24 0M91 72a12 12 0 1 0 24 0" stroke="#6ee7d8" stroke-width="3" fill="none"/>
+    <text x="0" y="102" class="label">Input frames</text>
+    <text x="0" y="126" class="small">images / video</text>
+  </g>
+  <g transform="translate(305 232)">
+    <path d="M28 28h100v72H28zM42 44h72M42 61h52M42 78h64" stroke="#6ee7d8" stroke-width="3" fill="none"/>
+    <text x="0" y="126" class="label">Prepare image</text>
+    <text x="0" y="148" class="small">enhance + segment</text>
+  </g>
+  <g transform="translate(515 232)">
+    <path d="M22 94c8-42 22-65 44-65s36 23 44 65M38 94c6-25 15-38 28-38s22 13 28 38M58 94c3-11 6-16 8-16s5 5 8 16" stroke="#6ee7d8" stroke-width="3" fill="none"/>
+    <text x="0" y="126" class="label">Candidate proposals</text>
+    <text x="0" y="148" class="small">shadows + morphology</text>
+  </g>
+  <g transform="translate(745 232)">
+    <path d="M23 41h44v52H23zM83 34l34 0M83 51h34M83 68h34M83 85h22" stroke="#6ee7d8" stroke-width="3" fill="none"/>
+    <text x="0" y="126" class="label">HOG + geometry</text>
+    <text x="0" y="148" class="small">appearance checks</text>
+  </g>
+  <g transform="translate(965 232)">
+    <path d="M22 76l20-20 20 16 28-35 36 39" stroke="#6ee7d8" stroke-width="3" fill="none"/>
+    <circle cx="42" cy="56" r="5" fill="#6ee7d8"/><circle cx="62" cy="72" r="5" fill="#6ee7d8"/><circle cx="90" cy="37" r="5" fill="#6ee7d8"/>
+    <text x="0" y="126" class="label">NMS</text>
+    <text x="0" y="148" class="small">remove duplicates</text>
+  </g>
+  <g transform="translate(1185 232)">
+    <path d="M25 84l22-34 23 19 29-41 28 18" stroke="#6ee7d8" stroke-width="3" fill="none"/>
+    <circle cx="47" cy="50" r="5" fill="#6ee7d8"/><circle cx="70" cy="69" r="5" fill="#6ee7d8"/><circle cx="99" cy="28" r="5" fill="#6ee7d8"/>
+    <text x="0" y="126" class="label">Track + evaluate</text>
+    <text x="0" y="148" class="small">Kalman + IDs + metrics</text>
+  </g>
+
+  <path d="M1330 395 C1100 460, 870 460, 640 395" stroke="#315477" stroke-width="2" fill="none" stroke-dasharray="8 10"/>
+  <text x="70" y="445" class="small">Output: annotated frames, tracked trajectories, saved results, and failure-case examples.</text>
+  <text x="1330" y="445" text-anchor="end" class="eyebrow">MATLAB</text>
+</svg>
