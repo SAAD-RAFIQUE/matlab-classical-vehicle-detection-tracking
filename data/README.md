@@ -1,8 +1,8 @@
-# Data placement
+# Data Placement
 
 Raw datasets are intentionally not included in this public repository.
 
-To reproduce the pipeline, place licensed data in this structure:
+To reproduce the pipeline, place licensed data in the following structure:
 
 ```text
 data/
@@ -21,9 +21,11 @@ data/
 │   │   └── gt.csv
 │   ├── seq_0011/
 │   └── seq_0020/
-└── kitti/                         # Optional KITTI root or set KITTI_ROOT
+└── kitti/                         # Optional KITTI root, or set KITTI_ROOT
 ```
 
-The MATLAB scripts expect the picture categories and annotation columns used by the original experiment. Do not commit data unless its license permits redistribution. Keep local dataset paths, credentials, and internal company material outside the repository.
+The numbered picture-category folders are stable technical identifiers used by the MATLAB scripts. They are intentionally kept unchanged so that the existing data contract and relative paths continue to work.
 
-For KITTI, use the official source and follow its license and citation requirements. When a local KITTI installation is outside the repository, set `KITTI_ROOT` before running `src/main.m`.
+The scripts expect the picture categories and annotation columns used by the original experiment. Do not commit data unless its license permits redistribution. Keep local dataset paths, credentials, and internal company material outside the repository.
+
+For KITTI, use the official source and follow its license and citation requirements. If the local KITTI installation is outside this repository, set `KITTI_ROOT` before running `src/main.m`.
